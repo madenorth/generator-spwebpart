@@ -1,0 +1,5 @@
+
+<div class="ms-TextField">
+<label class="ms-Label">{{field.properties.label}}</label>                
+<input type="text" ng-model="vm.properties[field.targetProperty]" uib-typeahead-dynamic="{{field.properties.expression}}" class="ms-TextField-field" typeahead-popup-template-url="lcc-ui-typeahead-popup.html" typeahead-template-url="lcc-ui-typeahead-match.html" typeahead-min-length="field.properties.minlength"></input>
+</div>

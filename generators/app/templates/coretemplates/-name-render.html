@@ -1,0 +1,7 @@
+<h2>Showing Events for {{vm.properties.Venue.name}}</h2>
+<div ng-repeat="day in vm.Events">
+    <h3>{{day.groupName}}</h3>
+    <div ng-repeat="event in day.events | limitTo:vm.properties.PageSize">
+        {{event.title}}
+    </div>
+</div>

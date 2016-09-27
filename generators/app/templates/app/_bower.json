@@ -1,0 +1,21 @@
+{
+  "name": "<%= wpname %>",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Matt Williams"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-office-ui-fabric": "^0.12.3"
+  }
+}

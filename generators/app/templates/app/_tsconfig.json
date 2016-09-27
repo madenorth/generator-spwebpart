@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "amd",
+        "sourceMap": true,
+        "listFiles": true,
+        "removeComments": true
+        //"noEmitOnError": true
+    },
+    "filesGlob": [
+        "src/**/*.ts",
+        "typings/**/*.d.ts"
+    ],
+    "exclude": [ "node_modules", "typings", "scripts","App", "src"]
+}
