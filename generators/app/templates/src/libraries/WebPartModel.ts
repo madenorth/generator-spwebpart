@@ -10,10 +10,4 @@ namespace LccWebParts {
         Definition: SP.WebParts.WebPartDefinition;
         ClientContext: SP.ClientContext;
     }
-
-
-
-    export interface IEvent {
-
-    }
 }
