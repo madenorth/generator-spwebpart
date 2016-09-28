@@ -89,7 +89,7 @@ module.exports = generators.Base.extend({
   copySrc: function () {
     var _this = this;
     this.registerTransformStream(rename(function (path) {
-        path.dirname = path.dirname.replace('_', '');
+        //path.dirname = path.dirname.replace('_', '');
         path.basename = path.basename.replace('_', '');
         return path;
     }));
@@ -113,6 +113,6 @@ module.exports = generators.Base.extend({
     );
   },
   install: function () {
-    //this.installDependencies();
+    this.installDependencies();
   }
 });
