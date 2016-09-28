@@ -39,76 +39,16 @@ module.exports = generators.Base.extend({
       this.props = props;
     }.bind(this));
   },
-  copyCore: function () {
-    console.log('Creating webpart');
-    this.fs.copyTpl(
-      this.templatePath('core/WebPartController.ts'),
-      this.destinationPath('src/' + this.props.wpname + 'Controller.ts'),
-      this.props
-    );
-    this.fs.copyTpl(
-      this.templatePath('core/IEventWebPartProps.ts'),
-      this.destinationPath('src/I' + this.props.wpname + 'Props.ts'),
-      this.props
-    );
-    this.fs.copyTpl(
-      this.templatePath('core/index.d.ts'),
-      this.destinationPath('src/index.d.ts'),
-      this.props
-    );
-  },
-  copyLibraries: function () {
-    console.log('Copying library files..');
-    this.fs.copyTpl(
-      this.templatePath('libraries/*.*'),
-      this.destinationPath('src/libraries'),
-      this.props
-    );
-  },
-  copyLibraryTemplates: function () {
-    this.fs.copyTpl(
-      this.templatePath('librarytemplates/*.*'),
-      this.destinationPath('src/libraries/templates'),
-      this.props
-    );
-  },
-  copyCoreTemplates: function () {
+  copyTemplates: function () {
     var _this = this;
-
     this.registerTransformStream(rename(function (path) {
         path.dirname = path.dirname.replace('-name-', _this.props.wpname);
-        path.basename = path.basename.replace('-name-', _this.props.wpname);
+        path.basename = path.basename.replace('-name-', _this.props.wpname).replace('_','');
         return path;
     }));
     this.fs.copyTpl(
-      this.templatePath('coretemplates/*.*'),
-      this.destinationPath('src/templates'),
-      this.props
-    );
-  },
-  copySrc: function () {
-    var _this = this;
-    this.registerTransformStream(rename(function (path) {
-        //path.dirname = path.dirname.replace('_', '');
-        path.basename = path.basename.replace('_', '');
-        return path;
-    }));
-    this.fs.copyTpl(
-      this.templatePath('src/**/*.*'),
-      this.destinationPath(''),
-      _this.props
-    );
-  },
-  copyApp: function () {
-    var _this = this;
-    this.registerTransformStream(rename(function (path) {
-        path.dirname = path.dirname.replace('-name-', '');
-        path.basename = path.basename.replace('-name-', '');
-        return path;
-    }));
-    this.fs.copyTpl(
-      this.templatePath('App/**/*.*'),
-      this.destinationPath('App'),
+      this.templatePath(),
+      this.destinationPath(),
       _this.props
     );
   },
