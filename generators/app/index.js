@@ -12,7 +12,7 @@ module.exports = generators.Base.extend({
   prompting: function () {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the ' + chalk.red('SharePoint 2013 Client Web Part') + ' generator!'
+      'Welcome to the ' + chalk.green('SharePoint 2013 Client Web Part') + ' generator!'
     ));
 
     var prompts = [{
@@ -20,6 +20,18 @@ module.exports = generators.Base.extend({
       name: 'wpname',
       message: 'What is the name of this webpart (nospaces)?',
       default: this.appname
+    },
+    {
+      type: 'input',
+      name: 'title',
+      message: 'Web part title?',
+      default: this.appname + ' Web Part'
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'Web part description?',
+      default: this.appname + ' description'
     }];
 
     return this.prompt(prompts).then(function (props) {
@@ -27,18 +39,7 @@ module.exports = generators.Base.extend({
       this.props = props;
     }.bind(this));
   },
-  writinglibraries: function () {
-    console.log('Copying library files..');
-    this.fs.copyTpl(
-      this.templatePath('libraries/*.*'),
-      this.destinationPath('src/libraries'),
-      this.props
-    );
-    this.fs.copyTpl(
-      this.templatePath('librarytemplates/*.*'),
-      this.destinationPath('src/libraries/templates'),
-      this.props
-    );
+  copyCore: function () {
     console.log('Creating webpart');
     this.fs.copyTpl(
       this.templatePath('core/WebPartController.ts'),
@@ -56,7 +57,22 @@ module.exports = generators.Base.extend({
       this.props
     );
   },
-  copyWPTemplates: function () {
+  copyLibraries: function () {
+    console.log('Copying library files..');
+    this.fs.copyTpl(
+      this.templatePath('libraries/*.*'),
+      this.destinationPath('src/libraries'),
+      this.props
+    );
+  },
+  copyLibraryTemplates: function () {
+    this.fs.copyTpl(
+      this.templatePath('librarytemplates/*.*'),
+      this.destinationPath('src/libraries/templates'),
+      this.props
+    );
+  },
+  copyCoreTemplates: function () {
     var _this = this;
 
     this.registerTransformStream(rename(function (path) {
@@ -70,16 +86,29 @@ module.exports = generators.Base.extend({
       this.props
     );
   },
-  copyApp: function () {
+  copySrc: function () {
     var _this = this;
     this.registerTransformStream(rename(function (path) {
         path.dirname = path.dirname.replace('_', '');
         path.basename = path.basename.replace('_', '');
         return path;
     }));
-  this.fs.copyTpl(
-      this.templatePath('app/**/*.*'),
+    this.fs.copyTpl(
+      this.templatePath('src/**/*.*'),
       this.destinationPath(''),
+      _this.props
+    );
+  },
+  copyApp: function () {
+    var _this = this;
+    this.registerTransformStream(rename(function (path) {
+        path.dirname = path.dirname.replace('-name-', '');
+        path.basename = path.basename.replace('-name-', '');
+        return path;
+    }));
+    this.fs.copyTpl(
+      this.templatePath('App/**/*.*'),
+      this.destinationPath('App'),
       _this.props
     );
   },

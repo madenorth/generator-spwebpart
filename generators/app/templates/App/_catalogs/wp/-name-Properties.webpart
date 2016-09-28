@@ -1,0 +1,50 @@
+﻿<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage></importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="HelpUrl" type="string" />
+        <property name="Hidden" type="bool">False</property>
+        <property name="Description" type="string"><%= description %></property>
+        <property name="Content" type="string">&lt;div class="webpart"&gt;
+    &lt;div ng-controller="<%= wpname %>Controller as vm" bindwebpartid&gt;
+        &lt;div data-ng-include="vm.editIncludeUrl" data-ng-show="vm.IsWebPartEditMode"&gt;&lt;/div&gt;
+        &lt;p class="error" data-ng-show="vm.Error" ng-cloak&gt;
+          {{vm.Error}}
+        &lt;/p&gt;
+        &lt;div data-ng-include="vm.includeUrl" &gt;&lt;/div&gt;
+    
+        
+
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript"&gt;
+
+        document.write('\x3Cscript type="text/javascript" src="' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/pnp-ww.js" ww-appName="webpartWidget" ww-appType="Angular" ww-appCss=\'[{"src": "' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/libs/fabric.css"},{"src": "' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/libs/fabric.components.css"},{"src":"' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/libs/bootstrap-custom.css"},{"src": "' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/libs/style.css"}]\' ww-appScripts=\'[{"src":"//code.jquery.com/jquery-1.12.4.min.js", "priority":0},{"src":"https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js", "priority":1}, {"src": "' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/libs/ngOfficeUiFabric.min.js", "priority":2},{"src": "' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/libs/ui-bootstrap-custom-tpls-2.1.3.js", "priority":3}, {"src": "' + _spPageContextInfo.siteServerRelativeUrl + 'Style Library/wwTest/lcc.webpartproperties.js", "priority":4}]\'&gt;\x3C/script&gt;');
+    &lt;/script&gt;
+  
+  &lt;/div&gt;</property>
+        <property name="CatalogIconImageUrl" type="string" />
+        <property name="Title" type="string"><%= title %></property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="TitleUrl" type="string" />
+        <property name="ChromeType" type="chrometype">None</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="Width" type="unit" />
+        <property name="Height" type="unit" />
+        <property name="HelpMode" type="helpmode">Navigate</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="ChromeState" type="chromestate">Normal</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

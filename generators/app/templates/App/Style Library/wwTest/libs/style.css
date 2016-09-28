@@ -1,0 +1,141 @@
+
+.spPropertyPaneContainer {
+    top: 65px;
+    position: fixed;
+    right: -340px;
+    bottom: 0;
+    z-index: 999;
+}
+
+html[dir=ltr] [id^=spPropertyPaneContainer].showPane {
+    right: 0;
+}
+
+.propertyPane {
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    width: 340px;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+html[dir=ltr] .propertyPane {
+    right: 0;
+}
+
+html[dir=ltr] .propertyPane {
+    border-left: 1px solid #eaeaea;
+}
+
+.propertyPaneTitleBarBox {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    padding-bottom: 20px;
+}
+
+.propertyPaneTitleBar {
+    background: #3c3c3c;
+    padding: 10px 20px 12px;
+    height: 25px;
+}
+
+[dir=ltr] .propertyPanePageTitle {
+    margin-right: 20px;
+    color: #fff;
+}
+
+.propertyPanePageContent {
+    position: absolute;
+    width: 100%;
+    top: 67px;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.propertyPaneGroupContent {
+    padding: 0 20px 16px;
+}
+
+[dir=ltr] .propertyPaneClose {
+  right: 0;
+}
+
+.propertyPaneClose {
+  background-color: transparent;
+  border:none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0px 20px;
+  position: absolute;
+  top: 10px;
+}
+
+.ms-MessageBar {
+    width: 95%;
+    margin-top: 15px;
+
+}
+
+/* Styles for Weather App */
+
+/*.weather {
+  font-family: Century Gothic, sans-serif;
+  background-color: #ccdcff;
+  width: 360px;
+}
+
+.weather h1 {
+  border: solid;
+  font-size: medium;
+  background-color: #6697ff;
+  color: white;
+  border-width: 1px 0px 1px 0px;
+  padding-left: 5px;
+  margin-bottom: 0px;
+}
+
+.weather td {
+  text-align: right;
+}
+
+.oddColumn {
+  background-color: #f2f2f2;
+  padding: 0px 5px;
+}
+
+.evenColumn { 
+  background-color: #ffffff;
+  padding: 0px 5px;
+}
+
+.weather img {
+  border: solid;
+  border-width: 1px;
+  padding: 10px 10px 81px 10px;
+  margin: 0px 10px 0px 10px;
+  float: left;
+}
+
+.condition {
+  padding: 2px 0px 0px 10px;
+  font-size: large;
+}
+
+.disabled {
+  display: none;
+}
+
+.error {
+  color: darkred;
+  font-style: italic;
+}
+
+.disclaimer {
+  font-size: xx-small;
+  padding: 0px 10px 10px 10px;
+  font-style: italic;
+}*/
