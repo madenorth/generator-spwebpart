@@ -9,7 +9,5 @@ namespace LccWebParts {
         SaveWebPartProperty(webPartId: string, propertyName: string, object: any): ng.IPromise<void | IError>;
         IsPageInEditMode(): boolean;
         IsWebPartInEditMode(string): boolean;
-        SearchVenue(string): ng.IPromise<any | IError>;
-        GetEvents(venueId: string, dayItemCount: number): ng.IPromise<any | IError>;
     }
 }

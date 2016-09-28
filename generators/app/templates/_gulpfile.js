@@ -29,7 +29,7 @@ gulp.task('compile', ['compiletemplates','mainbowerfiles'], function() {
        });
 
     return tsResult
-        .pipe(concat('lcc.webpartproperties.js'))
+        .pipe(concat('<%= wpname %>.js'))
         .pipe(sourcemaps.write()) 
         .pipe(gulp.dest('App/Style Library/wwTest'))
         .on('error', function() { process.exit(1) });
@@ -43,7 +43,7 @@ gulp.task('compiletemplates', function () {
       "templateHeader": 'namespace LccWebParts { angular.module("webpartWidget").run(function($templateCache) {',
       "templateFooter": '}); }'
     }))
-    .pipe(gulp.dest('src'));
+    .pipe(gulp.dest('src/templates'));
 });
 
 gulp.task('mainbowerfiles', function() {

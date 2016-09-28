@@ -6,19 +6,20 @@ namespace LccWebParts {
     
     export class <%= wpname%>Controller extends BaseController<I<%= wpname%>Props> {
         
-        static $inject = ["WebPartService", "$scope", "appSettings", "$templateCache"];
+        public <%= wpname %>Service: any;
+        static $inject = ["<%= wpname %>Service", "WebPartService", "$scope", "appSettings", "$templateCache"];
         
         public AvailableTemplates: string[] = ['<%= wpname%>render.html','event-list-custom.html'];
 
         public editIncludeUrl: string = '<%= wpname%>properties.html';
         public includeUrl: string = '<%= wpname%>render.html'
         
-        constructor (WebPartService: IWebPartService,
+        constructor (<%= wpname %>Service: any, WebPartService: IWebPartService,
                      $scope: ng.IScope,
                      appSettings: any,
                      $templateCache: ng.ITemplateCacheService) {
             super(WebPartService, $scope, appSettings, $templateCache);   
-
+            this.<%= wpname %>Service = <%= wpname %>Service;
             this.properties.CustomItemTemplate = "<%= wpname%>render.html"; // _spPageContextInfo.siteServerRelativeUrl + "/Style Library/wwTest/Views/eventlistrender.html";
         }
 
@@ -28,14 +29,14 @@ namespace LccWebParts {
         }
         
         searchVenue(val) : any {
-            return this.WebPartService.SearchVenue(val);
+            return this.<%= wpname %>Service.SearchVenue(val);
         };
 
         loadEvents() : void {
             if(this.properties.Venue) 
             {
                 console.log("loading events for " + this.properties.Venue.id);
-                this.WebPartService.GetEvents(this.properties.Venue.id, this.properties.PageSize)
+                this.<%= wpname %>Service.GetEvents(this.properties.Venue.id, this.properties.PageSize)
                 .then((result: any) => {
                         this.Events = result
                 })

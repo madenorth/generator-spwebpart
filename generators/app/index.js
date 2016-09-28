@@ -3,6 +3,7 @@ var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var rename = require("gulp-rename");
+var _ = require('lodash');
 
 module.exports = generators.Base.extend({
 
@@ -17,26 +18,28 @@ module.exports = generators.Base.extend({
 
     var prompts = [{
       type: 'input',
-      name: 'wpname',
-      message: 'What is the name of this webpart (nospaces)?',
+      name: 'name',
+      message: 'What is the name of this webpart?',
       default: this.appname
     },
     {
       type: 'input',
       name: 'title',
       message: 'Web part title?',
-      default: this.appname + ' Web Part'
+      default: _.startCase(this.appname) + ' Web Part'
     },
     {
       type: 'input',
       name: 'description',
       message: 'Web part description?',
-      default: this.appname + ' description'
+      default: _.startCase(this.appname) + ' description'
     }];
 
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
       this.props = props;
+
+      this.props.wpname = _.upperFirst(_.camelCase(this.props.name));
     }.bind(this));
   },
   copyTemplates: function () {
@@ -53,6 +56,6 @@ module.exports = generators.Base.extend({
     );
   },
   install: function () {
-    this.installDependencies();
+    //this.installDependencies();
   }
 });

@@ -25,8 +25,6 @@ namespace LccWebParts {
 
         public IsPageInEditMode: () => boolean = this.isPageInEditMode;
         public IsWebPartInEditMode: (string) => boolean = this.isWebPartInEditMode;
-        public SearchVenue: (string) => ng.IPromise<any | IError> = this.searchVenue;
-        public GetEvents: (venueId: string, dayItemCount: number) => ng.IPromise<any | IError> = this.getEvents;
 
         public isWebPartInEditMode(WebPartId: string) {
             var editPaneBody = document.getElementsByClassName("ms-TPBody");
@@ -35,52 +33,6 @@ namespace LccWebParts {
             }
             var toolPaneWPId = editPaneBody[0].id.split("_").slice(-5).join("-");
             return (this.isPageInEditMode() && (toolPaneWPId === WebPartId));
-        }
-
-        public searchVenue(val: string) {
-            return this.$http.get(this.appSettings.apiBaseEndpoint + 'sports/venues.json', {
-                params: {
-                    q: val + '*'
-                }
-            }).then(function(response){
-                return (<any>response.data).results.map(function(item){
-                    let result : IVenue = 
-                        {
-                            name: item.name,
-                            id: item.id
-                        };
-                    return result;
-                });
-            });
-        }
-
-        getEvents(venueId: string, dayItemCount: number) {
-            let defer = this.$q.defer();
-            let promise: ng.IPromise<any | IError> = defer.promise;
-
-             this.$http.get(this.appSettings.apiBaseEndpoint + 'sports/events.json', {
-                params: {
-                    venue: venueId,
-                    pagesize: dayItemCount,
-                    groupBy: "Day",
-                    sortBy: "startDate",
-                    sort: "date",
-                    hideOccurrences: false
-                }
-            })
-            .then((response: ng.IHttpPromiseCallbackArg<any>) => {
-                defer.resolve(response.data);
-            })
-            .catch ((reason: ng.IHttpPromiseCallbackArg<void>) => {
-                defer.reject (
-                    // IError
-                    {
-                        ErrorMessage: 'Error ' + reason.status + ': ' + reason.statusText
-                    }
-                );
-            });
-
-            return promise;
         }
 
         public isPageInEditMode() {

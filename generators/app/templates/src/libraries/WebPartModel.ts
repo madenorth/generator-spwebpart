@@ -16,9 +16,4 @@ namespace LccWebParts {
     export interface IEvent {
 
     }
-
-    export interface IVenue {
-        name: string;
-        id: string;
-    }
 }

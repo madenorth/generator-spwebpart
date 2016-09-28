@@ -6,5 +6,7 @@
 /// <reference path="./<%= wpname%>Controller.ts" />
 /// <reference path="./libraries/IWebPartService.ts" />
 /// <reference path="./libraries/WebPartModel.ts" />
+/// <reference path="./<%= wpname%>Model.ts" />
 /// <reference path="./libraries/WebPartService.ts" />
+/// <reference path="./<%= wpname%>Service.ts" />
 /// <reference path="./I<%= wpname%>Props.ts" />
