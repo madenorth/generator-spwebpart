@@ -6,5 +6,5 @@ Instructions for use
 * Open a cmd window and cd into the directory you cloned into 
 * type: npm link
 * Create a new directory that you want to scaffold the application into
-* cd into this location
+* cd into the newly created directory
 * Type yo spwebpart to start the yeoman generator
