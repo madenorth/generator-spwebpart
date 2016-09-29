@@ -8,11 +8,11 @@ namespace LccWebParts {
         
         public <%= wpname %>Service: any;
         static $inject = ["<%= wpname %>Service", "WebPartService", "$scope", "appSettings", "$templateCache"];
-        
-        public AvailableTemplates: string[] = ['<%= wpname%>render.html','event-list-custom.html'];
 
         public editIncludeUrl: string = '<%= wpname%>properties.html';
         public includeUrl: string = '<%= wpname%>render.html'
+
+        public AvailableTemplates: string[] = ['<%= wpname%>render.html','event-list-custom.html'];
         
         constructor (<%= wpname %>Service: any, WebPartService: IWebPartService,
                      $scope: ng.IScope,
@@ -20,42 +20,19 @@ namespace LccWebParts {
                      $templateCache: ng.ITemplateCacheService) {
             super(WebPartService, $scope, appSettings, $templateCache);   
             this.<%= wpname %>Service = <%= wpname %>Service;
-            this.properties.CustomItemTemplate = "<%= wpname%>render.html"; // _spPageContextInfo.siteServerRelativeUrl + "/Style Library/wwTest/Views/eventlistrender.html";
-        }
-
-        
-        getTemplates() {
-            return this.AvailableTemplates;
-        }
-        
-        searchVenue(val) : any {
-            return this.<%= wpname %>Service.SearchVenue(val);
-        };
-
-        loadEvents() : void {
-            if(this.properties.Venue) 
-            {
-                console.log("loading events for " + this.properties.Venue.id);
-                this.<%= wpname %>Service.GetEvents(this.properties.Venue.id, this.properties.PageSize)
-                .then((result: any) => {
-                        this.Events = result
-                })
-                .catch((reason: IError) => {
-                    console.error(reason.ErrorMessage);
-                    
-                })
-            }
         }
 
         Render () {
           super.Render();
-          if (this.properties.CustomItemTemplate)
-          {
-              this.includeUrl = this.properties.CustomItemTemplate;
-          }
-
-          this.loadEvents();
         }
+
+        getTemplates() {
+            return this.AvailableTemplates;
+        }
+
+        searchVenue(val) : any {
+            return this.<%= wpname %>Service.SearchVenue(val);
+        };
 
         protected propertyPaneSettings: IPropertyPaneSettings = {
           
@@ -66,28 +43,29 @@ namespace LccWebParts {
                 },
                 groups: [
                   {
-                    groupName: "GroupName",
+                    groupName: "Group",
                     groupFields: [
-                    // PropertyPaneTextField('CustomItemTemplate', {
-                    //   label: 'Please choose or type a path to a template',
-                    //   description: ''
-                    // }),
-                    PropertyPaneDropdown('PageSize', {
-                      label: 'Items to show per day',
+                    PropertyPaneTextField('pagename', {
+                      label: 'Enter some text',
+                      description: ''
+                    }),
+                    PropertyPaneDropdown('pagesize', {
+                      label: 'Dropdown example',
                       options: [
                         { key: '5', text: '5' },
                         { key: '10', text: '10' },
                         { key: '20', text: '20' }
                       ]}),
-                    PropertyPaneTypeahead('CustomItemTemplate', {
+                    PropertyPaneTypeahead('customitemtemplate', {
                       label: 'Please choose or type a path to a template',
+                      description: 'This field allows you to type ahead or enter your own value',
                       minlength: 0,
                       expression: "template for template in vm.getTemplates() | filter:$viewValue",
                     }),
-                    PropertyPaneTypeahead('Venue', {
-                      label: 'Please type to choose a Venue',
+                    PropertyPaneTypeahead('location', {
+                      label: 'Please type to find a state',
                       minlength: 3,
-                      expression: "venue as venue.name for venue in vm.searchVenue($viewValue)",
+                      expression: "location as location for location in vm.searchVenue($viewValue)",
                     })
                   ]
                   }

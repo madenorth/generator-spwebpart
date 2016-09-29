@@ -9,30 +9,9 @@
 
         <div class="propertyPanePageContent">
             <div class="propertyPaneGroupContent">
-
             <div ng-repeat="field in vm.GetPropertyPaneSettings().pages[0].groups[0].groupFields">
-
                 <propertypane></propertypane>
-
-
-            <div ng-switch="field.type">
-                <div ng-switch-when="19">
-                    <div class="ms-TextField">
-                    <label class="ms-Label">{{field.properties.label}}</label>
-                    <input type="text" ng-model="vm.properties[field.targetProperty]" uib-typeahead-dynamic="{{field.properties.expression}}" class="ms-TextField-field" typeahead-popup-template-url="lcc-ui-typeahead-popup.html" typeahead-template-url="lcc-ui-typeahead-match.html" typeahead-min-length="field.properties.minlength"></input>
-                    </div>
-                </div>
-
             </div>
-
-            </div>
-
-                <!--<div class="ms-TextField">
-                <label class="ms-Label">Please type to choose a Venue</label>
-                <input type="text" ng-model="vm.WebPartProperties.Venue" uib-typeahead="venue as venue.name for venue in vm.searchVenue($viewValue)" class="ms-TextField-field" typeahead-loading="loadingLocations" typeahead-no-results="noResults" typeahead-popup-template-url="lcc-ui-typeahead-popup.html" typeahead-template-url="lcc-ui-typeahead-match.html" typeahead-min-length="3"></input>
-                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                <div ng-show="noResults"><i class="glyphicon glyphicon-remove"></i> No Results Found</div>
-                </div>-->
 
                 <uif-button uif-type="primary" data-ng-click="vm.SaveConfig($event)" prevent-default>Save</uif-button>
                 <uif-button uif-type="primary" _action="save" data-ng-click="vm.SaveConfig($event);" onclick="CoreInvoke('PageActionClick', this);return false;" prevent-default>Save &amp; Close</uif-button>

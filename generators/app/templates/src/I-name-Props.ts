@@ -2,8 +2,9 @@
 
 namespace LccWebParts {
     export interface I<%= wpname%>Props {
-        PageSize: number;
-        CustomItemTemplate: string;
-        Venue: IVenue;
+        pagename: string;
+        customitemtemplate: string;
+        pagesize: number;
+        location: string;
     }
 }
